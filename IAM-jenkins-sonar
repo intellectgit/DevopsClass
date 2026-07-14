@@ -1,0 +1,12 @@
+I have created custom policy 
+
+Console sign-in URL
+https://084129280874.signin.aws.amazon.com/console
+
+Console username 
+ec2-instance
+
+console Password 
+fNH0D^-(
+
+policy -  ec2-instance-policy
