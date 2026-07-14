@@ -51,3 +51,26 @@ This custom policy allows a user to monitor EC2 instances and perform basic life
 
 However, launching an EC2 instance is complex because it often requires permissions for associated resources (like subnets, security groups, AMIs, and key pairs). 
 Additionally, if you want to attach an IAM role to that instance, you must explicitly grant the iam:PassRole permission.
+
+Note -
+=====
+When I have attached "Administator access "  policy to the IAM user is almost equal to root user. 
+
+Recommended IAM Policy for Infrastructure Management
+==========================================================
+As a Senior DevOps Engineer, you need permissions to manage the cluster's lifecycle. Avoid AdministratorAccess. Instead, use a scoped policy.
+
+ "EKSManagement",
+               "eks:DescribeCluster",
+                "eks:ListClusters",
+                "eks:DescribeNodegroup",
+                "eks:ListNodegroups",
+                "eks:UpdateClusterVersion",
+                "eks:AccessKubernetesApi"
+				
+ "SupportActions"
+                "ec2:DescribeInstances",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeSecurityGroups",
+                "iam:ListRoles"   
+
