@@ -109,6 +109,31 @@ echo "Access Jenkins at: http://<your-ec2-public-ip>:8080"
 
 Note - once installed , allow the port 8080 from security group. 
 
+Sonarqube installation 
+===============================================
+# first switch the user to root, use this command 
+sudo su -
+sudo yum install java-11-amazon-corretto-headless -y
+
+sudo yum localinstall java-11-amazon-corretto*.rpm
+
+#Download the SonarqQube Server software.
+cd /opt
+yum install wget unzip -y
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.6.1.59531.zip
+
+unzip sonarqube-9.6.1.59531.zip
+mv sonarqube-9.6.1.59531 sonarqube
+
+#security practice, SonarQuber not advised to run root user, so create a new user called sonar
+useradd sonar
+chown -R sonar:sonar /opt/sonarqube/
+chmod -R 775 /opt/sonarqube/
+su - sonar
+cd /opt/sonarqube/bin/linux-x86-64/
+
+Note - once installed , allow the port 9000/9001 from security group. 
+
 
 
 
