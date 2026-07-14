@@ -63,6 +63,58 @@ You are not authorized to perform this operation. User: arn:aws:iam::08412928087
 arn:aws:ec2:eu-north-1:084129280874:key-pai
 
 
+Create EC2 with IAM user , install Jenkins 
+=============================================
+Note - create instance with Linux OS 
+
+Create a file 
+$ touch jenkins.sh
+
+Change permission 
+$chmod +x jenkins.sh
+
+Edit File 
+$ vim jenkinsh.sh
+
+Installation command 
+==================================
+#!/usr/bin/bash
+
+#STEP-1: Installing Git and Maven 
+yum install git maven -y 
+
+#STEP-2: Repo Information (jenkins.io --> download -- > redhat) 
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo 
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key 
+
+#STEP-3: Download Java 17 and Jenkins 
+sudo yum install java-21-amazon-corretto -y
+sudo alternatives --set java /usr/lib/jvm/java-21-amazon-corretto.x86_64/bin/java
+
+java -version
+
+sudo yum install jenkins -y 
+
+#STEP-4: Start and check the JENKINS Status 
+sudo systemctl daemon-reload
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+
+# Show initial admin password
+echo "Fetching initial admin password..."
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+echo "Jenkins installation completed."
+echo "Access Jenkins at: http://<your-ec2-public-ip>:8080"
+
+Note - once installed , allow the port 8080 from security group. 
+
+
+
+
+
+
+
 
 
 
