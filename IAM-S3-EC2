@@ -1,0 +1,53 @@
+root user is super user 
+
+In a team 2 to 3 members having account. 
+
+IAM user specific to services. 
+
+I have create 2 accounts , one for ec2 , and another for s3.
+If any issues relared to ec2 I will allocate for ec2 specific IAM user. 
+If any issues relared to s3 I will allocate for s3 specific IAM user. 
+
+Note - 
+you can absolutely allocate access to multiple AWS services to a single IAM user. In fact, this is the standard way to manage permissions in AWS.
+
+You are not limited to one policy per user; you can attach as many policies as needed to build the specific set of permissions required for a user's role
+
+Here two types of access 
+1. management console access 
+2. CLI access 
+
+S3 policies 
+=================
+While AWS provides managed policies like AmazonS3FullAccess, these are often too broad for production environments 
+because they grant permission to every S3 bucket in your account. Avoid these unless you are in 
+a sandbox or development environment.
+
+. Recommended Strategy for S3 Permissions
+Instead of one massive policy, break it down by the type of work the user performs:
+
+For Read-Only Users: Allow only s3:Get* and s3:List* actions on specific buckets.
+
+For Developers/Managers: Allow s3:PutObject, s3:DeleteObject, and s3:ListBucket on specific bucket paths (prefixes) rather than the entire bucket.
+
+For Console Users: If the user needs to use the AWS Management Console, they must have these additional permissions, or they will see "Access Denied" errors even if they have permission to access the data:
+
+s3:ListAllMyBuckets
+
+s3:GetBucketLocation
+
+EC2 - Instance 
+=====================
+
+Recommended Production Approach (Least Privilege)
+Granting AmazonEC2FullAccess gives a user control over every EC2 resource in the entire AWS account. 
+In a real-world enterprise environment, standard practice dictates building a Customer Managed Policy tailored to the user's specific workflow.
+
+          "ec2:StartInstances",
+          "ec2:StopInstances",
+          "ec2:RebootInstances"
+          ec2:RunInstances  
+This custom policy allows a user to monitor EC2 instances and perform basic lifecycle tasks (start/stop/reboot) without allowing them to delete the infrastructure or modify networking/security configurations.
+
+However, launching an EC2 instance is complex because it often requires permissions for associated resources (like subnets, security groups, AMIs, and key pairs). 
+Additionally, if you want to attach an IAM role to that instance, you must explicitly grant the iam:PassRole permission.
