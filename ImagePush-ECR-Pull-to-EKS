@@ -1,0 +1,21 @@
+Steps 
+===================
+1.Create Private repository on ECR.
+
+2.Create IAM user with "adminstrator access " along with CLI access key and seurity key.
+
+3. Goto AWS-CLI use below command 
+$aws configure
+aws access key - 
+aws secret access key - 
+region name - us-east-1
+default format json - yes
+
+4. In ECR go to repo, there is oprion "View Push Commands" 
+$aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 084129280874.dkr.ecr.eu-north-1.amazonaws.com
+$docker tag spring-demo:latest 084129280874.dkr.ecr.eu-north-1.amazonaws.com/spring-demo:latest
+$docker push 084129280874.dkr.ecr.eu-north-1.amazonaws.com/spring-demo:latest
+
+
+
+
