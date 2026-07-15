@@ -1,0 +1,37 @@
+
+IRSA  (IAMRole in Service Account)
+=============
+The kubernates objects pods will talk with AWS services like S3, EBS, DynamoDB , it required CSI drivers along with pod identity or IRSA.
+
+IRSA will make use of OIDC (OpenID connect) for the authentication and utherization by a token system. 
+
+kubernates cluster having OIDC url . It represents kubernates API server identity system. 
+
+we are attaching OIDC uel to the IAM role , when ever aws sends tokens to the OIDC it will accept by the IAM. 
+
+AWS-STS - security token service (this will provide token when ever authentcation required)
+
+create identity provide 
+================================
+goto IAM --> identity provider  ---> check opneID connect --> 
+
+provide OIDC url from eks cluster
+audience - sts.amazonaws.com
+
+Once created identity provider, add the role 
+
+ROle 
+==============
+web identity -- select identy provider 
+
+audience - sts.amazonaws.com
+
+policy - ebscsi driver policy
+
+Role details ---> role name ---> 
+
+Note - In trust policy we can add the namespace service account , by default service account for all name space . 
+
+
+
+
