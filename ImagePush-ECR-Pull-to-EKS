@@ -35,5 +35,11 @@ Pros: Highly recommended for production. It ensures consistency and traceability
 Cons: Requires better CI/CD versioning discipline (you cannot just "re-tag" an image).
 
 
+Image Pull 
+==================
+The answer depends on how your EKS cluster is configured. Because ECR and EKS are both AWS services, 
+you generally do not need to store long-term credentials (like username/password) as Kubernetes Secrets.
+
+
 
 
