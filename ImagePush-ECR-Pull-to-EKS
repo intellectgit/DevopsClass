@@ -4,10 +4,10 @@ Steps
 
 2.Create IAM user with "adminstrator access " along with CLI access key and seurity key.
 
-3. Goto AWS-CLI use below command 
+3. Goto AWS-CLI use below command ((connect to  the cloud with specific account for authentication))
 $aws configure
-aws access key - 
-aws secret access key - 
+aws access key -  AKIARHFT66NVL4WBD2RF
+aws secret access key -  
 region name - us-east-1
 default format json - yes
 
