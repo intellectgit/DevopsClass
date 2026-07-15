@@ -1,1 +1,34 @@
+Project is located in my local path - D:\My-Project\springboot-docker-demo
+
+Use the following command to maven build this project:
+mvn package
+
+Docker file 
+==============
+# define base docker image
+#FROM openjdk:11
+FROM amazoncorretto:11
+USER root
+WORKDIR /App
+LABEL maintainer="javaguides.net"
+ADD target/springboot-docker-demo-0.0.1-SNAPSHOT.jar springboot-docker-demo.jar
+RUN mkdir  -p /App/volume/hostpath
+COPY ./Volume.txt /App/volume/hostpath/.
+RUN chown -R 777 /App
+ENTRYPOINT ["java", "-jar", "springboot-docker-demo.jar"]
+
+
+
+Use the below command to build the docker image:
+$docker build -t springboot-docker-demo:latest .
+
+
+Let's use the following command to run the docker image:
+docker run -p 8081:8080 springboot-docker-demo
+
+Open the browser and hit this link in a browser http://localhost:8081/welcome
+You will see the below REST API response message in a browser:
+Spring Boot Docker Demo
+
+
 
