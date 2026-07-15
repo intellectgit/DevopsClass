@@ -16,6 +16,24 @@ $aws ecr get-login-password --region eu-north-1 | docker login --username AWS --
 $docker tag spring-demo:latest 084129280874.dkr.ecr.eu-north-1.amazonaws.com/spring-demo:latest
 $docker push 084129280874.dkr.ecr.eu-north-1.amazonaws.com/spring-demo:latest
 
+1. Tag Mutability (Mutable)
+Definition: By default, ECR repositories are Mutable.
+
+Behavior: You can push an image with an existing tag (e.g., my-app:latest) multiple times. Each time you push, the tag is updated to point to the newest image version.
+
+Pros: Easy to manage, especially if you constantly want latest to always point to the most recent code.
+
+Cons: Risky. It makes your deployments non-deterministic. If your production environment is running my-app:latest, you cannot be 100% sure which specific build is currently running, as the tag could have been overwritten by a developer five minutes ago.
+
+2. Tag Immutability (Immutable)
+Definition: When set to Immutable, a tag cannot be overwritten once it is pushed.
+
+Behavior: If you try to push an image with a tag that already exists in the repository, ECR will reject the push with an error (ImageTagAlreadyExistsException).
+
+Pros: Highly recommended for production. It ensures consistency and traceability. You know exactly which code is running because a tag always points to a specific, unique image digest. If you need to update, you must use a new, unique tag (e.g., v1.1, v1.2).
+
+Cons: Requires better CI/CD versioning discipline (you cannot just "re-tag" an image).
+
 
 
 
