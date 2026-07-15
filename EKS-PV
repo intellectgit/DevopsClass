@@ -1,1 +1,44 @@
 
+pre requisite 
+
+awscli ---> aws --version
+kubectl 
+eksctl  ---> eksctl version
+
+
+
+configure AWSCLI  (connect to  the cloud with specific account for authentication)
+================
+
+$aws configure
+
+aws access key -  AKIARHFT66NVL4WBD2RF
+aws secret access key -
+
+region name - us-east-1
+default format json - yes
+
+
+
+
+create cluster 
+===================
+    $ eksctl create cluster  (default command )
+
+--> it creates two m5.large large nodes by default for data nodes. Instead of t3.micro 
+
+    control plane -- Always aws take care  (per hour 10rs only for control plane)
+	
+	data plane (worker nodes )  -- two m5.large worker nodes  (by default it will create m5.large but to reduce cost creating in t3.micro)
+	
+	customize command --> to reduse the node cost 
+	
+	$ eksctl create cluster --name ramcluster --nodegroup-name ramng --node-type t3.micro --nodes 4 --managed
+
+Scenario 
+----------  
+ cluser created but there is issue in the creating data plane and control plane, Now I want to delete the cluster
+
+ $ eksctl get cluster 
+ $ eksctl delete cluster <clustername> 
+ 
