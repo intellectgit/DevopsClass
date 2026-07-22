@@ -10,3 +10,14 @@ push: Tells Git to send your committed changes from your local computer to a rem
 origin: The default shorthand name that Git uses for the URL of your remote repository (usually on GitHub, GitLab, or Bitbucket).  
 develop: The specific target branch you are pushing to (and typically pushing from, assuming you currently have the develop branch checked out locally).  
 
+Practical 
+================
+1. create 3 repo 
+2. create 2 users 
+3. do push local repo to remote 
+4. resolve push with rebase 
+5. do commit sensitive data and revert (--soft/hard HEAD~1)
+6. DO merge with two branches 
+7. create merge conflict and resolve 
+8. create multiple commit and do merge with only one commit (cherrypick)
+9.
