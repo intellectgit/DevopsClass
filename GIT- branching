@@ -1,0 +1,12 @@
+
+Never directly perform commit on main branch.
+
+$git push origin develop
+The command git push origin develop uploads your local commits to a remote repository so that other team members can access them. 
+
+Breakdown of the Commandgit 
+
+push: Tells Git to send your committed changes from your local computer to a remote server. 
+origin: The default shorthand name that Git uses for the URL of your remote repository (usually on GitHub, GitLab, or Bitbucket).  
+develop: The specific target branch you are pushing to (and typically pushing from, assuming you currently have the develop branch checked out locally).  
+
