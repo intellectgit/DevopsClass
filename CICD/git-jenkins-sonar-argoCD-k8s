@@ -1,0 +1,21 @@
+CICD
+=============
+pre-requisite 
+ec2 -install jenkins  , clone git to the jenkins 
+ec2 - install sonar   (use same vpc network to avoid  the network complexity )
+docker as a agent in jenkins  complete this 
+
+https://www.youtube.com/watch?v=JGQI5pkK82w&list=PLdpzxOOAlwvLm5lWlYctUnwaFRIO2Io_5&index=10
+Plug-in
+=============
+manage jenkins -->available plugin --> docker pipeline
+manage jenkins -->available plugin --> sonarqube scanner
+
+create a token in sonarqube to connect jenkins 
+
+goto My account --> security --> token name --> generate 
+
+create global credentials for sonarqube tokens 
+
+manage jenkins --> credentials --> system --> global credentials  ---> kind (secret text)  --> 
+
