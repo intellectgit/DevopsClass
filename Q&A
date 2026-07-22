@@ -1,0 +1,51 @@
+
+QUE- when you apply kubectl cmd , what will happens internally ?
+$ kubectl apply -f deploy.yaml 
+
+kubectl read yaml ----> send request to kube-api server to validate the request (authenticate and autherizatio)
+
+kube-api --> ectd (it maintain the data )
+
+scheduler keep on look for the unscheduled instructions. It will allocate the worker node which are matches resources or lable
+
+kubelet on specific worker node  recieve the instruction from the api server 
+
+kubelet ask the container runtime to create the pod 
+controller continously ensure that desire state which is mentioned as replica count.
+============================================================================================================
+
+QUE- How does request reaches application which is created as pod in kubernates cluster , when user send request ?
+ANS-The standard end-to-end flow involves DNS --> Cloud/External Load Balancer --> Ingress Controller --> Kubernetes Service --> Pod.
+
+1. DNS Resolution (The Entry Point)
+The user types a URL (e.g., [https://myapp.example.com](https://myapp.example.com)) into their browser.
+
+A DNS lookup translates that domain name into a public IP address. This IP address belongs to your cloud provider's load balancer or the cluster's edge gateway.
+
+5. kube-proxy & Node Routing (The Network Layer)Every node in a Kubernetes cluster runs a daemon called kube-proxy. 
+ kube-proxy maintains network rules (using Linux iptables or IPVS) on the node. When the Service intercepts traffic, these rules intercept the 
+ packet and route it across the cluster network to the specific IP address of the chosen target Pod.
+
+=====================================================================================================================
+QUE - devloper accidentally push some sensitive information that access key and secret key to the git hub ,
+As a devops engineer what are actions need to take immediately to prevent this ?
+
+ANS-  Deactivate/Delete the Compromised Keys:
+
+Go immediately to your cloud provider console (e.g., AWS IAM Console).
+
+Deactivate or Delete the specific Access Key ID that was leaked. This instantly cuts off any unauthorized actor using those credentials.
+
+Generate New Credentials:
+
+Create a fresh set of access keys for your applications or services.
+
+Update your secure storage (CI/CD secrets manager, HashiCorp Vault, etc.) with the new keys.
+
+To prevent this we are maintaining secrete key & information in aws secret manager or hashi corp value .
+
+================================================================================================================================
+
+
+
+
