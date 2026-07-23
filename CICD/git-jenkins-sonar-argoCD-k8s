@@ -3,6 +3,9 @@ CICD
 pre-requisite 
 ec2 -install jenkins  , clone git to the jenkins 
 ec2 - install sonar   (use same vpc network to avoid  the network complexity )
+ec2 - install docker
+create EKS cluster 
+create ArgoCD
 docker as a agent in jenkins  complete this 
 
 https://www.youtube.com/watch?v=JGQI5pkK82w&list=PLdpzxOOAlwvLm5lWlYctUnwaFRIO2Io_5&index=10
