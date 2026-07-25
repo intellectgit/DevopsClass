@@ -1,1 +1,39 @@
 
+create hello world job 
+
+after created sample job 
+
+goto job --> configure --> pipeline syntax --> select sample step as "version control checkout"  --> repo url 
+
+---> credentils (add jenkins ) --> branch specifier(/master)  --> generate pipeline script --> get one code 
+there is stage git checkout add this code
+
+credentils (add jenkins )
+---------------------------
+credentils (add jenkins ) --> kind (username with password )   --> username (as git mail id )  ---> password --> ID (git-token) --> add
+password
+-------------------
+goto git repo --> settings --> developer setting --> personal access token --> tokens --> generate token  --> token generate (classic)
+  --> name (webhook) --> select expiry --> select all --> generate token --> copy token 
+
+
+Webhook 
+=============
+git account --> settings --> webhook --> add webhook --> payload url --> add webhook
+
+payload url -- http://jenkinprivateip:8080/github-webhook/
+
+
+webhook validation
+=========================
+once webhook configured just validate weather webhook is active or not . 
+
+configure webhook in jenkins
+--------------------------------------
+goto job --> configure --> build triggers (github hook trigger from scm pooling )  --> save
+
+
+validation
+---------------
+now commit the source from git and check the jenkins build number 
+
