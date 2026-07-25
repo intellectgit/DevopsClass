@@ -35,4 +35,77 @@ Plug-in
 =============
 manage jenkins -->available plugin --> docker pipeline
 
+Project-1 
+
+scripting pipeline from git repo 
+====================================
+
+pipeline 
+
+---> pipeline script from SCM 
+SCM --> git 
+repository url  --> https://github.com/intellectgit/DevopsClass
+credentials 
+script path -- > from the root folder where jenkinsfile 
+
+A simple jenkins pipeline to verify if the docker slave configuration is working as expected.
+
+pipeline {
+  agent {
+    docker { image 'node:16-alpine' }
+  }
+  stages {
+    stage('Test') {
+      steps {
+        sh 'node --version'
+      }
+    }
+  }
+}
+
+jenkins Master-slave node
+---------------------------------
+In old jenkins master slave approach there is a challenge that , if any ideal slave node , there is a resource utilised 
+in background even if there is no job running on slave node. Also if I launch a slave node on cent-os 2.0 version , after
+2 years there is upgrade verion will come , that devops person should upgrade. this way management issue also will face.
+
+jenkins master as adocker agent 
+---------------------------------------
+where as latest approach jenkins as master with docker , if any job triggers then and there docker will create the container 
+to run the required package for the build, once build completed container will stop and deleted. this is how we can save cost.
+also need to maintain the slave node. 
+
+
+Project -2  Multi Stage Multi Agent
+==============
+
+pipeline {
+  agent none
+  stages {
+    stage('Back-end') {
+      agent {
+        docker { image 'maven:3.8.1-adoptopenjdk-11' }
+      }
+      steps {
+        sh 'mvn --version'
+      }
+    }
+    stage('Front-end') {
+      agent {
+        docker { image 'node:16-alpine' }
+      }
+      steps {
+        sh 'node --version'
+      }
+    }
+  }
+}
+
+
+Project-3 
+==============
+https://www.youtube.com/watch?v=ogrx8G8pClQ
+
+
+
 
