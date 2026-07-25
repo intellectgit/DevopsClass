@@ -10,6 +10,8 @@ CD
 ----
 git (Helm charts)  --> update k8s manifest --> ArgoCD ---> kubernates
 
+free style job - only declarative 
+pipeline - declarative as well as scripted 
 
 
 
