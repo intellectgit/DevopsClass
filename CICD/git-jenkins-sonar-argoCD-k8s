@@ -1,5 +1,18 @@
-CICD
+CICD - Flow
 =============
+github (commit) --> webhook --> jenkins triggers ---> CI  ---> CD 
+
+CI 
+----
+checkout(git) --> Build & Unit Test (maven)--> Code scan (docker)--> Image build (docker) ---> image scan(trivy) --> image push (ECR)
+
+CD 
+----
+git (Helm charts)  --> update k8s manifest --> ArgoCD ---> kubernates
+
+
+
+
 pre-requisite 
 ec2 -install jenkins  , clone git to the jenkins 
 ec2 - install sonar   (use same vpc network to avoid  the network complexity )
