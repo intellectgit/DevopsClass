@@ -1,1 +1,154 @@
+Restore from staging 
+=====================================
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   header.html
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   header.html
+
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ git diff
+warning: in the working copy of 'header.html', LF will be replaced by CRLF the next time Git touches it
+diff --git a/header.html b/header.html
+index e69de29..a59b90a 100644
+--- a/header.html
++++ b/header.html
+@@ -0,0 +1,13 @@
++<!DOCTYPE html>
++<html>
++<body>
++
++<h1>This is heading 1</h1>
++<h2>This is heading 2</h2>
++<h3>This is heading 3</h3>
++<h4>This is heading 4</h4>
++<h5>This is heading 5</h5>
++<h6>This is heading 6</h6>
++
++</body>
++</html>
+===============================================================================================================================
+Based on diff command same file in staging empty file , and workspace file having content. When restore command applied staging empty file will delete. 
+===============================================================================================================================
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ git restore --staged header.html
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        header.html
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+to revert the commit files 
+===============================
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ git log --oneline
+385fc97 (HEAD -> master) Revert "move to local repo" revert html file
+92dbc12 move to local repo
+87516fc Revert "moving files to local repo"
+6a00b76 moving files to local repo
+56661e3 Revert "move to local repo"
+af12c4d move to local repo
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ git reset --hard 6a00b76
+HEAD is now at 6a00b76 moving files to local repo
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ ls
+header.html  paragraph.html
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ ls
+header.html  paragraph.html
+
+scenario-2
+=================
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ cat header.html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>This is heading 1</h1>
+<h2>This is heading 2</h2>
+<h3>This is heading 3</h3>
+<h4>This is heading 4</h4>
+<h5>This is heading 5</h5>
+<h6>This is heading 6</h6>
+
+</body>
+</html>
+
+I will revert this line using git revert command
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ git add .
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ git commit -m 'testing '
+On branch master
+nothing to commit, working tree clean
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ vim header.html
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ cat header.html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>This is heading 1</h1>
+<h2>This is heading 2</h2>
+<h3>This is heading 3</h3>
+<h4>This is heading 4</h4>
+<h5>This is heading 5</h5>
+<h6>This is heading 6</h6>
+
+</body>
+</html>
+
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ git log --oneline
+e9e190e (HEAD -> master)  revert the commit changes
+6a00b76 moving files to local repo
+56661e3 Revert "move to local repo"
+af12c4d move to local repo
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ git reset --hard e9e190e
+HEAD is now at e9e190e  revert the commit changes
+
+DELL@DESKTOP-3P8R2BE MINGW64 /d/git (master)
+$ cat header.html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>This is heading 1</h1>
+<h2>This is heading 2</h2>
+<h3>This is heading 3</h3>
+<h4>This is heading 4</h4>
+<h5>This is heading 5</h5>
+<h6>This is heading 6</h6>
+
+</body>
+</html>
+
+I will revert this line using git revert command
+
+
+
 
