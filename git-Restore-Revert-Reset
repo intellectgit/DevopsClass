@@ -150,5 +150,13 @@ $ cat header.html
 I will revert this line using git revert command
 
 
+Note points 
+===================
+Restore - to rever the changes from staging area to working area 
+revert - to revert the changes from locla repo to working area, using HEAD
+reset -  to revert the changes from local repo to working area using commit ID 
+
+
+
 
 
