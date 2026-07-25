@@ -1,8 +1,35 @@
-jenkins master as docker agent 
-https://www.youtube.com/watch?v=kHJGYTcLNj0
 
 cicd without argocd - ashok IT
 https://www.youtube.com/watch?v=llBvl_iSLDw
+
+You can find the complete details of the setup and configuration in the below video
+
+https://www.youtube.com/watch?v=ogrx8G8pClQ
+
+
+
+Install jenkins on EC2 with port 8080 
+
+install docker on same EC2 instance where jenkins installed (we can install on separate ec2 also ).
+
+Docker Slave Configuration
+Run the below command to Install Docker
+
+sudo apt update
+sudo apt install docker.io
+
+Grant Jenkins user and Ubuntu user permission to docker deamon.
+
+sudo su - 
+usermod -aG docker jenkins
+usermod -aG docker ubuntu
+systemctl restart docker
+
+
+Once you are done with the above steps, it is better to restart Jenkins.
+
+http://<ec2-instance-public-ip>:8080/restart
+The docker agent configuration is now successful.
 
 
 
