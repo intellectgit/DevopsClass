@@ -1,1 +1,30 @@
 
+Plug-in
+=============
+manage jenkins -->available plugin --> docker pipeline
+manage jenkins -->available plugin --> sonarqube scanner
+
+step-1 create a token in sonarqube to connect jenkins 
+================================================================
+goto My account --> security --> token name & token-type (user token) and expiry --> generate 
+
+step-2 Add sonar scannet to jenkins 
+====================================
+manage jenkins ---> tool ---> sonar code scanner ---> name (Sonarscan)  -- > select version(5.0.1.3) 
+
+step-3 create global credentials for sonarqube tokens 
+==============================================================
+manage jenkins --> credentials --> system --> global credentials  ---> kind (secret text)  -->  secrete (user token)  --> ID (SonarQubeToken) --> Add 
+
+step-4 create environment variable 
+===========================================
+manage jenkins --> system ---> environment variable --> sonarqube 
+
+name - Sonarqube 
+serverurl - http://IP:9000 (use private IP)
+server authentication token  - ID (SonarQubeToken)
+
+
+
+
+
