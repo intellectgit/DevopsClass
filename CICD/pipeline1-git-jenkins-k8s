@@ -205,8 +205,10 @@ pipeline {
 }
 
 ```
+If service type is Loadbalancer  --> goto load balancer in the aws and add the port in security group to access the application.
+If service type is nodeport and access through ingress controller , go to applicationLB andd add the port in security group.
 
-	
+
 # Step - 12 : Access Application in Browser #
 - **We should be able to access our application** 
 URL : http://LBR/context-path/
