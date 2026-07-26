@@ -58,10 +58,13 @@ aws secretsmanager create-secret --name 'artifactory' --secret-string 'supersecr
 we can overcome the challenges 
 ==================================
 - Reading/verifying the actual value of credentials.
+   we are providing very few people to read the secret value. 
 - How do we protect from the deletion.
     even some one having admin access , evern after delete also we can recovery within seven days.
  - Rotating the secrete without human interaction
+    using aws secrete manager we rotate the password automatically.
  - how to store the previous value of the credentials.
+    through the versions we can maintain the previous password in the aws credentials manager.
 
    
 For more details refer document & video 
