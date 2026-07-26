@@ -31,7 +31,9 @@ Step 3: Use the Secret in your Jenkinsfile PipelineOnce the plugin is installed 
 You can reference your AWS secret directly inside your Declarative Pipeline using the credentials()   
 
 
-pipeline {
+pipeline
+
+{
     agent any
     environment {
         // Automatically fetches the secret value from AWS Secrets Manager at runtime
