@@ -33,3 +33,10 @@ Step 2: Store the Secret in AWS Secrets ManagerGo to the AWS Console, open Secre
         }
     }
 }
+
+
+For more details refer document & video 
+
+document - https://plugins.jenkins.io/aws-secrets-manager-credentials-provider/
+
+Video - https://www.youtube.com/watch?v=lp1ZdJIUkQk&t=1130s
