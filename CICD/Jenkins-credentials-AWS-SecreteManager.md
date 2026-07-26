@@ -43,9 +43,27 @@ pipeline {
     }
 }
 
+Username with Password
+A username and password pair.
 
+Value: password
+Tags:
+jenkins:credentials:type = usernamePassword
+jenkins:credentials:username = username
+
+AWS CLI:
+aws secretsmanager create-secret --name 'artifactory' --secret-string 'supersecret' --tags 'Key=jenkins:credentials:type,Value=usernamePassword' 'Key=jenkins:credentials:username,Value=joe' --description 'Acme Corp Artifactory login'
+
+
+we can overcome the challenges 
+==================================
+- Reading/verifying the actual value of credentials.
+- How do we protect from the deletion.
+    even some one having admin access , evern after delete also we can recovery within seven days.
+ - Rotating the secrete without human interaction
+ - how to store the previous value of the credentials.
+
+   
 For more details refer document & video 
-
 document - https://plugins.jenkins.io/aws-secrets-manager-credentials-provider/
-
 Video - https://www.youtube.com/watch?v=lp1ZdJIUkQk&t=1130s
