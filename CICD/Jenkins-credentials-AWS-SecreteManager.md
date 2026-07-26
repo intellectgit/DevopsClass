@@ -9,6 +9,7 @@ Your Jenkins server/agent needs permission to read secrets. If Jenkins runs on a
     {
       "Effect": "Allow",
       "Action": [
+      
         "secretsmanager:GetSecretValue",
         "secretsmanager:ListSecrets"
       ],
