@@ -3,6 +3,7 @@ The cleanest and most standard way to link AWS Secrets Manager with Jenkins is u
 Step 1: Grant AWS Permissions to Jenkins
 Your Jenkins server/agent needs permission to read secrets. If Jenkins runs on an EC2 instance, ECS, or EKS, attach an IAM Role to it with the following permission policy:
 
+
 {
   "Version": "2012-10-17",
   "Statement": [
