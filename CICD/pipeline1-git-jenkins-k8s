@@ -1,0 +1,43 @@
+
+step-1 
+create a ec2 instance and install jenkins .
+
+step-2
+Install maven & git in jenkins 
+
+step-3
+setup docker in jenkins 
+
+step-4
+create EKS management host in AWS.
+
+Lanch ec2 instance with ubuntu -(Instance name - EKS-HOST)
+1. lanch new ec2 instance using aws ubunt(t2.micro)
+
+2.connect to the ec2 instance install kubectl 
+
+3.Instal AWS CLI latest version
+
+4. Install eksctl 
+
+5.create IAM role & attach to EKS management host & jenkins 
+   create new role using IAM service
+   add below permissions for the role (name- awsekscluster)
+    IAM - full access
+	VPC - full access
+	EC2 - full access
+	CloudFormation -full access
+	Administrator access
+	
+6. attach IAM role to the ec2 (eks-host)
+ got0 action --> security --> modify IAM role --> role - awsekscluster
+ 
+ we are going to create cluster on the ec2 that's why attaching the required permissions.
+   
+7. attach IAM role to the jenkins EC2 instance
+ got0 action --> security --> modify IAM role --> role - awsekscluster
+ 
+ Reason - jenkins machin also going to communicating with eks cluster for the deploying application that is the reason.
+ 
+ step -5
+ Create a EKS cluster using eksctl 
