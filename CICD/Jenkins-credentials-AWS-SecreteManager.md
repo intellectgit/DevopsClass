@@ -32,8 +32,9 @@ You can reference your AWS secret directly inside your Declarative Pipeline usin
 
 
 pipeline
-
 {
+   
+    
     agent any
     environment {
         // Automatically fetches the secret value from AWS Secrets Manager at runtime
