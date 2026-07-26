@@ -1,0 +1,30 @@
+n a Jenkins Declarative Pipeline, the post block is a section that runs automatically after all the main stages of your pipeline have finished executing.
+
+Think of it as a safety net or a final clean-up crew. No matter what happened during the build—whether your tests failed, your Docker push succeeded, or the pipeline crashed halfway through—the code inside the post block is guaranteed to run.
+
+Inside your snippet, you are using the always condition
+
+post {
+    always {
+        // Runs no matter what (Success, Failure, or Aborted)
+    }
+}
+Other common conditions you can use in a post block include success, failure, unstable, or changed
+
+What is cleanWs()?
+cleanWs() stands for "Clean Workspace." It is a command provided by the Workspace Cleanup Plugin in Jenkins.
+
+When Jenkins runs a pipeline on an agent (like your EC2 instance), it creates a dedicated folder called a workspace for that specific job. Into this workspace, it clones your Git repository, downloads dependencies, compiles Java files via Maven, and builds local Docker artifacts.
+
+If you don't clean up this workspace after every build, several bad things happen:
+
+Disk Space Exhaustion: Over time, heavy files (like target/ folders, uncompressed node modules, or local Docker cache files) will pile up on your EC2 instance's hard drive until the server runs out of disk space and crashes.
+
+State Pollution / Stale Files: Leftover temporary files from a previous failed build might accidentally interfere with or get packaged into your next fresh build, causing strange, unpredictable bugs.
+
+post {
+    always {
+        echo 'Cleaning up workspace container artifacts...'
+        cleanWs()    
+    }
+}
