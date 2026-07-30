@@ -1,0 +1,34 @@
+D:\Kubernates\node Affinity>kubectl apply -f deploy.yaml
+deployment.apps/springboot-demo created
+
+D:\Kubernates\node Affinity>kubectl apply -f service.yaml
+service/my-service created
+
+D:\Kubernates\node Affinity>kubectl rollout history deployment
+deployment.apps/springboot-demo
+REVISION  CHANGE-CAUSE
+1         <none>
+
+D:\Kubernates\node Affinity>kubectl set image deployment/springboot-demo springboot-demo=ruby.myproject.com:8080/artifacts/runtime:21
+deployment.apps/springboot-demo image updated
+
+D:\Kubernates\node Affinity>kubectl rollout history deployment
+deployment.apps/springboot-demo
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+
+It will revert to the previous /old image id 
+D:\Kubernates\node Affinity>kubectl rollout undo deployment springboot-demo --to-revision=1
+Warning: resource deployments/springboot-demo was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
+deployment.apps/springboot-demo rolled back
+
+The above command is reverted to previous/old image id.
+
+
+D:\Kubernates\node Affinity>kubectl rollout undo deployment springboot-demo --to-revision=2
+Warning: resource deployments/springboot-demo was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
+deployment.apps/springboot-demo rolled back
+
+based on revision id on history , it will revert to the particular id 
+
