@@ -6,7 +6,7 @@ Steps
 
 3. Goto AWS-CLI use below command ((connect to  the cloud with specific account for authentication))
 $aws configure
-aws access key -  AKIARHFT66NVL4WBD2RF
+aws access key -  AKIARHFT66NVOBJHS56H
 aws secret access key -  
 region name - us-east-1
 default format json - yes
