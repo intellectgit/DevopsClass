@@ -48,10 +48,12 @@ Use scrape_config if you are running Prometheus manually (e.g., standard Docker 
 
 Use ServiceMonitor if your application is deployed on Kubernetes alongside the Prometheus Operator, as it automates target lifecycle management and keeps your configurations modular.
 
-Feature,Vanilla Prometheus,Prometheus Operator
-Architecture,A standalone monitoring server requiring manual setup of binaries or static containers.,"A Kubernetes-native controller that automates the deployment, scaling, and lifecycle management of Prometheus instances."
-Configuration,Managed through static configuration files (prometheus.yml) and ConfigMaps.,"Managed dynamically via Kubernetes Custom Resources (CRDs) like ServiceMonitor, PodMonitor, and Prometheus."
-Target Discovery,"Requires explicit configuration of file-based, static targets, or manual service discovery rules.",Automatically discovers targets using Kubernetes native label selectors and API objects.
+prometheus vs prometheus-operator , realtime usecase
+---------------------------------------------------------
+Feature	Vanilla Prometheus	Prometheus Operator	
+Architecture	A standalone monitoring server requiring manual setup of binaries or static containers.	A Kubernetes-native controller that automates the deployment, scaling, and lifecycle management of Prometheus instances.	
+Configuration	Managed through static configuration files (prometheus.yml) and ConfigMaps.	Managed dynamically via Kubernetes Custom Resources (CRDs) like ServiceMonitor, PodMonitor, and Prometheus.	
+Target Discovery	Requires explicit configuration of file-based, static targets, or manual service discovery rules.	Automatically discovers targets using Kubernetes native label selectors and API objects.	
 
 Real-Time Use Case: Dynamic E-Commerce Microservices
 Imagine you are managing an online retail platform running on a Kubernetes cluster that experiences massive traffic spikes during flash sales.
