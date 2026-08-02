@@ -43,3 +43,7 @@ It instantly updates the internal scrape configuration, automatically pulling re
 
 The Result: Your Grafana dashboard reflects real-time resource utilization and error rates of the exact running pods instantly, allowing your team to monitor system health seamlessly during critical scaling events.
 
+
+Prometheus-operator configuration via service monitor 
+----------------------------------------------------------
+
