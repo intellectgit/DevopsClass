@@ -1,0 +1,48 @@
+2 account -- > power user -- aws console --> login j
+
+read user ---> view 
+
+instance type- r7g.4xlarge
+connect  to ec2 under web 
+ssm session manager  (simple system manager) 
+
+automatically we are attaching auto scaling to the ec2 instance 
+
+click on - auto scaling group name (to connect auto scalling )
+
+Auto scalling 
+====================
+1. when ever response delay ,we will get the notify(through data dog) ,  then we will  check the health check . if instance not responding within expected time we will terminate the instance .
+when ever we terminate the instance due to health check issue , auto scalling will trigger the new instance. 
+
+2. depends on request load , it will launch new instance. to reduce the cost cutting . 
+
+health check 
+==================
+if not able connect instance or not ?
+instance are running or not ? 
+
+we will check activities under auto scaling 
+asset id - unique number for each application
+
+ARN 
+====
+unique identifier user to specify a particular resouce across all aws resource including ec2 instance. 
+
+Monitoring -tab
+===============
+we can monitor CPU utilization under moniter tab 
+
+storage 
+============
+under starage we can see what is the volume type is attached to the ec2 instance. 
+
+listing down volumes 
+
+device name 
+memory size
+
+
+
+tag name ? 
+
