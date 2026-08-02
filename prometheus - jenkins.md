@@ -18,9 +18,11 @@ where it live - As a standalone Kubernetes Custom Resource (YAML manifest applie
 service monitor 
 
 Real-Time Use Case: Dynamic E-Commerce Microservices
+=========================================================
 Imagine you are managing an online retail platform running on a Kubernetes cluster that experiences massive traffic spikes during flash sales.
 
 Without Prometheus Operator (Vanilla Approach)
+-----------------------------------------------------
 The Challenge: Your development team deploys 20 new microservices for an upcoming sale, and each service constantly scales up its number of Pod replicas based on user load.
 
 The Pain Point: Every time a new microservice instance or pod is spawned, its IP address changes. To monitor it, a platform engineer must manually update the prometheus.yml file or reconfigure a ConfigMap with the new endpoints, then trigger a reload of the Prometheus server.
@@ -28,6 +30,7 @@ The Pain Point: Every time a new microservice instance or pod is spawned, its IP
 The Risk: If an autoscaling event happens in the middle of the night, Prometheus misses metrics from the new pods because they aren't written in the static configuration, creating blind spots during high-stakes incidents.
 
 With Prometheus Operator (Kubernetes-Native Approach)
+-----------------------------------------------------------
 The Setup: You define a ServiceMonitor custom resource once, configured to look for any service labeled app: e-commerce and scrape the /metrics endpoint.
 
 The Real-Time Workflow:
