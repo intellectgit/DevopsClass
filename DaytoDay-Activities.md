@@ -1,4 +1,4 @@
-Day-to-Day Responsibilities as a Central DevOps Engineer
+My self Ramesh, working as a devops engineer from past 7 years 5 months. 
 As a Central DevOps Engineer supporting 5 projects leveraging our core enterprise product (iTurmeric), my role bridges infrastructure stability, developer enablement, CI/CD reliability, and security governance across AWS EKS and OpenShift clusters.
 
 Here is how I structure and execute my day-to-day responsibilities to ensure high availability and seamless developer collaboration:
