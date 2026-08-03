@@ -21,20 +21,17 @@ Jenkins Build Failures (Path Mismatches):
 3. CI/CD Pipeline Management & New Microservice Onboarding
 Jenkins Pipeline Configuration (End-to-End): When a project team introduces a new microservice utilizing iTurmeric, I set up robust, scalable Jenkins pipelines using Groovy/Declarative syntax.
 
+4. Code Commits, Bug Fixes, and Feature Deployments
+ When developers provide reviewed bug fixes or new feature code, I assist in committing changes and triggering the corresponding Jenkins pipelines.
 
-4. Performance Testing Support
+5. Cluster Security, Namespace Isolation, and Vulnerability Management
+Namespace Isolation: Enforcing strict  cluster security by maintaining isolated namespaces for each of the 5 project teams using Kubernetes NetworkPolicies, Role-Based Access Control (RBAC), and ResourceQuotas.
+
+6. Zero-Downtime Production Deployments
+Rolling Updates & Probes: I manage mission-critical deployments across AWS EKS production environments and enterprise OpenShift clusters, strictly implementing liveness, readiness, and startup probes. This ensures traffic is only routed to healthy pods, facilitating seamless, zero-downtime rolling updates.
+
+7. Performance Testing Support
 Observability Tuning: When development teams run performance or load tests, I collaborate with them to build custom Grafana dashboards tailored to the specific pods and parameters under test.
 
 
-5. Code Commits, Bug Fixes, and Feature Deployments
-Collaborative Fixes: When developers provide reviewed bug fixes or new feature code, I assist in committing changes and triggering the corresponding Jenkins pipelines.
 
-
-
-6. Cluster Security, Namespace Isolation, and Vulnerability Management
-Namespace Isolation: Enforcing strict multi-tenancy and cluster security by maintaining isolated namespaces for each of the 5 project teams using Kubernetes NetworkPolicies, Role-Based Access Control (RBAC), and ResourceQuotas.
-
-
-
-7. Zero-Downtime Production Deployments
-Rolling Updates & Probes: I manage mission-critical deployments across AWS EKS production environments and enterprise OpenShift clusters, strictly implementing liveness, readiness, and startup probes. This ensures traffic is only routed to healthy pods, facilitating seamless, zero-downtime rolling updates.
