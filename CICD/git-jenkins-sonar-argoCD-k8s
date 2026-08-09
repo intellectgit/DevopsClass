@@ -4,7 +4,7 @@ github (commit) --> webhook --> jenkins triggers ---> CI  ---> CD
 
 CI 
 ----
-checkout(git) --> Build & Unit Test (maven)--> Code scan (docker)--> Image build (docker) ---> image scan(trivy) --> image push (ECR)
+checkout(git) --> Build & Unit Test (maven)--> Code scan (sonar)--> Image build (docker) ---> image scan(trivy) --> image push (ECR)
 
 CD 
 ----
