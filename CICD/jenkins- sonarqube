@@ -25,6 +25,40 @@ serverurl - http://IP:9000 (use private IP)
 server authentication token  - ID (SonarQubeToken)
 
 
+For sonar scan , point to jdk21 only for sonar scan 
+=============================================================
+#Add the Amazon Corretto Repository
+sudo rpm --import https://yum.corretto.aws/corretto.key
+sudo curl -L -o /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
+
+#Install Java 21 Development Kit (JDK)
+sudo yum install -y java-21-amazon-corretto-devel
+java -version
+
+Jenkins under Manage Jenkins ---> Tools (Global Tool Configuration) --->JDK when adding your Java 21 tool configuration!
+JAVA_HOME= /usr/lib/jvm/java-21-amazon-corretto.x86_64
+
+configure the stage in pipeline 
+=====================================
+stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv(installationName: 'Sonarqube', credentialsId: 'SonarToken') {
+            script {
+                // Properly bind the tool path to JAVA_HOME for this block
+                def jdk21Path = tool name: 'java21', type: 'hudson.model.JDK'
+                withEnv(["JAVA_HOME=${jdk21Path}", "PATH+JAVA=${jdk21Path}/bin"]) {
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar'
+                }
+            }
+        }    
+    }
+}
+
+
+
+
+
+
 
 
 
