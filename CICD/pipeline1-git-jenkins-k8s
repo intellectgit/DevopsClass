@@ -106,6 +106,21 @@ echo "Access Jenkins at: http://<your-ec2-public-ip>:8080"
 
 Note - once installed , allow the port 8080 from security group. 
 
+Sonar Qube Installation
+================================
+Sonarqube installation 
+===============================================
+sudo docker run -d --name sonarqube -p 9000:9000 sonarqube:latest
+
+Access URL: Open your browser and go to http://<your-server-ip>:9000
+
+Default Credentials: Username: admin | Password: admin (you will be forced to change it on first login)
+
+New credentials 
+==============
+admin
+Ramesh@12345
+
 
 ## Step-5 : Configure Maven as Global Tool in Jenkins ##
 1) Manage Jenkins -> Tools -> Maven Installation -> Add maven <br/>
