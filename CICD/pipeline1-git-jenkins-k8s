@@ -112,9 +112,21 @@ Note - once installed , allow the port 8080 from security group.
 
 ## Step-6 : Setup Docker in Jenkins ##
 ```
-curl -fsSL get.docker.com | /bin/bash
-sudo usermod -aG docker jenkins
+curl -fsSL get.docker.com | /bin/bash  # this line is error  skip this line
+
+# Install DOcker 
+sudo yum update -y
+sudo yum install -y docker
+
+# Ensure the Docker daemon is running
+sudo systemctl status docker
+sudo systemctl start docker
+sudo systemctl enable docker
+
+#Grant Jenkins permission to access Docker
+sudo usermod -a -G docker jenkins
 sudo systemctl restart jenkins
+
 sudo docker version
 ```
 # Step - 8 : Install AWS CLI in JENKINS Server #
