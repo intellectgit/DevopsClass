@@ -60,54 +60,51 @@ Note: Cluster creation will take 5 to 10 mins of time (we have to wait). After c
 kubectl get nodes  
 ```
 
-# Step-4 : Jenkins Server Setup in Linux VM #
+Create EC2 with IAM user , install Jenkins 
+=============================================
+Note - create instance with Linux OS 
 
-1) Create Ubuntu VM using AWS EC2 (t2.medium) <br/>
-2) Enable 8080 Port Number in Security Group Inbound Rules
-3) Connect to VM using MobaXterm
-4) Instal Java
+Create a file 
+$ touch jenkins.sh
 
-```
-sudo apt update
-sudo apt install fontconfig openjdk-17-jre
+Change permission 
+$chmod +x jenkins.sh
+
+Edit File 
+$ vim jenkinsh.sh
+
+Installation command 
+==================================
+#!/usr/bin/bash
+
+#STEP-1: Installing Git and Maven 
+sudo yum install git maven -y
+
+#STEP-2: Repo Information (jenkins.io --> download -- > redhat) 
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo 
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key 
+
+#STEP-3: Download Java 17 and Jenkins 
+sudo yum install java-21-amazon-corretto -y
+sudo alternatives --set java /usr/lib/jvm/java-21-amazon-corretto.x86_64/bin/java
+
 java -version
-```
 
-5) Install Jenkins
-```
-sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
-  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
-  /etc/apt/sources.list.d/jenkins.list > /dev/null
-sudo apt-get update
-sudo apt-get install jenkins
-```
-6) Start Jenkins
+sudo yum install jenkins -y 
 
-```
-sudo systemctl enable jenkins
+#STEP-4: Start and check the JENKINS Status 
+sudo systemctl daemon-reload
 sudo systemctl start jenkins
-```
-
-7) Verify Jenkins
-
-```
 sudo systemctl status jenkins
-```
-	
-8) Open jenkins server in browser using VM public ip
 
-```
-http://public-ip:8080/
-```
-
-9) Copy jenkins admin pwd
-```
+# Show initial admin password
+echo "Fetching initial admin password..."
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-```
-	   
-10) Create Admin Account & Install Required Plugins in Jenkins
+
+echo "Jenkins installation completed."
+echo "Access Jenkins at: http://<your-ec2-public-ip>:8080"
+
+Note - once installed , allow the port 8080 from security group. 
 
 
 ## Step-5 : Configure Maven as Global Tool in Jenkins ##
