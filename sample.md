@@ -36,3 +36,10 @@ scrape_configs:
       - targets: ['localhost:8080']
     labels:
       environment: 'production'
+
+
+Feature,scrape_config,ServiceMonitor
+Where it lives,Inside the Prometheus configuration file (prometheus.yml).,As a standalone Kubernetes Custom Resource (YAML manifest applied via kubectl).
+Management style,Static / Imperative. Requires manual updates to the config file/ConfigMap and restarting Prometheus whenever a target changes.,Dynamic / Declarative. Automatically discovers targets using Kubernetes labels and selectors without touching Prometheus config files.
+Environment Suitability,"Traditional VMs, bare metal, static cloud infrastructures, or simple Docker setups.",Kubernetes-native environments running the Prometheus Operator.
+Target Discovery,"Relies on static lists (static_configs) or built-in service discoverers (kubernetes_sd_configs, ec2_sd_configs, etc.).","Relies on Kubernetes label selectors (namespaceSelector, selector) to target Kubernetes Service and Endpoints objects."
