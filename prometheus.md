@@ -18,7 +18,7 @@ scheme: The protocol used for scraping, typically http or https.
 static_configs or Service Discovery: Defines which exact endpoints or dynamic resources to target.
 
 Example of a Scrape Configuration
-
+---
 scrape_configs:
   - job_name: 'spring-boot-app'
     scrape_interval: 15s
@@ -27,17 +27,18 @@ scrape_configs:
       - targets: ['localhost:8080']
         labels:
           environment: 'production'
-
-is scrape_config acting like service monitor in the prometheus ? scrape_config vs service monitor ?
---------------------------------------------------------------------------------------------
+---
+###is scrape_config acting like service monitor in the prometheus ? scrape_config vs service monitor ?
+---
 Yes, conceptually a ServiceMonitor acts like a wrapper or a generator for a scrape_config, specifically within a Kubernetes environment when using the Prometheus Operator.
+---
 
 Understanding the Relationship
 scrape_config is the native, core configuration block understood by a standard Prometheus server (written inside prometheus.yml). It explicitly tells Prometheus what endpoints to pull metrics from, how often (scrape_interval), and what path (metrics_path) to use.
 
 ServiceMonitor is a Kubernetes Custom Resource Definition (CRD) introduced by the Prometheus Operator. Instead of manually editing raw prometheus.yaml files every time a new microservice is deployed, you create a ServiceMonitor manifest. The Prometheus Operator watches for these objects and automatically translates them into standard scrape_config blocks behind the scenes.
 
-scrape_config vs. ServiceMonitor (Comparison)
+###scrape_config vs. ServiceMonitor (Comparison)
 Feature	scrape_config	ServiceMonitor
 Where it lives	Inside the Prometheus configuration file (prometheus.yml).	As a standalone Kubernetes Custom Resource (YAML manifest applied via kubectl).
 Management style	Static/Imperative. Requires manual updates to the config file or ConfigMap and restarting/reloading Prometheus whenever a target changes.	Dynamic/Declarative. Automatically discovers targets using Kubernetes labels and selectors without touching Prometheus config files.
@@ -48,8 +49,9 @@ Use scrape_config if you are running Prometheus manually (e.g., standard Docker 
 
 Use ServiceMonitor if your application is deployed on Kubernetes alongside the Prometheus Operator, as it automates target lifecycle management and keeps your configurations modular.
 
-prometheus vs prometheus-operator , realtime usecase
----------------------------------------------------------
+###prometheus vs prometheus-operator , 
+##realtime usecase
+
 Feature	Vanilla Prometheus	Prometheus Operator	
 Architecture	A standalone monitoring server requiring manual setup of binaries or static containers.	A Kubernetes-native controller that automates the deployment, scaling, and lifecycle management of Prometheus instances.	
 Configuration	Managed through static configuration files (prometheus.yml) and ConfigMaps.	Managed dynamically via Kubernetes Custom Resources (CRDs) like ServiceMonitor, PodMonitor, and Prometheus.	
