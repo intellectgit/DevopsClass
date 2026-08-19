@@ -39,6 +39,12 @@ pipeline {
         }
       }
     }
+
+//In software, a Code Smell is a warning from SonarQube that says: "Your application works right now, but the code is so messy, repetitive, or confusing that future changes will be slow, painful, and prone to breaking."
+
+// bug 
+// vulnerability 
+
  stage('Quality Gate') {
         steps {
             script {
@@ -85,6 +91,17 @@ pipeline {
             }
         }
     }
+
+//Common metrics evaluated by a Quality Gate include:
+New Code Conditions (Clean as You Code): Modern SonarQube heavily focuses on newly introduced code. Common gates state that New Code must have:
+
+Blocker or Critical Bugs and Vulnerabilities.Maintainability Rating of A (meaning zero critical code smells added).
+
+Test Coverage Thresholds: Setting a minimum percentage of unit test coverage for new code (e.g., Coverage on New Code must be greater than 80%
+
+Duplicated Code Limits: Ensuring that duplicated code blocks on new lines do not exceed a specific threshold (e.g., less than 3%).
+
+Security Hotspots Reviewed: Ensuring that 100%of security hotspots identified in new code have been explicitly reviewed and cleared by a developer.
  
  stage('Build') {
             steps {
