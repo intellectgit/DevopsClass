@@ -37,6 +37,8 @@ scrape_configs:
     labels:
       environment: 'production'
 
+---
+
 
 Feature,scrape_config,ServiceMonitor
 Where it lives,Inside the Prometheus configuration file (prometheus.yml).,As a standalone Kubernetes Custom Resource (YAML manifest applied via kubectl).
