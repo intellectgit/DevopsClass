@@ -28,7 +28,14 @@ pipeline {
                 sh "mvn test"
             }
         }
+        stage('Code Coverage') {
+    steps {
+        echo 'Running tests and generating JaCoCo coverage report...'
         
+        // Clean, compile, run tests, and generate the JaCoCo report
+        sh 'mvn clean test jacoco:report'
+    }
+}
   stage('Static Code Analysis') {
       environment {
         SONAR_URL = "http://34.201.116.83:9000"
