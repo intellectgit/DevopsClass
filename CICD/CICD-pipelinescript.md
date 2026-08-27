@@ -1,5 +1,10 @@
 pipeline {
- agent any 
+agent {
+        docker {
+    image 'maven:3.8.6-openjdk-11' // You can replace this with your preferred Docker image (e.g., node, python, etc.)
+           
+        }
+    }
  environment {
         awsRegion = 'us-east-1' 
         awsAccountId = "084129280874"  
@@ -28,14 +33,7 @@ pipeline {
                 sh "mvn test"
             }
         }
-        stage('Code Coverage') {
-    steps {
-        echo 'Running tests and generating JaCoCo coverage report...'
-        
-        // Clean, compile, run tests, and generate the JaCoCo report
-        sh 'mvn clean test jacoco:report'
-    }
-}
+       
   stage('Static Code Analysis') {
       environment {
         SONAR_URL = "http://34.201.116.83:9000"
@@ -46,11 +44,23 @@ pipeline {
         }
       }
     }
+ code coverage 
+
+here for the code coverage , unit test is the input and how many lines of code are tested?
+still how many lines of code is unused ?
+
+ex- there are 4 test cases are executed , for this 4 test cases only 150 lines are tested out of 1000 lines of code 
+
+remaining 850 lines of code is not tested.
+
+tool - jacaco 
 
 //In software, a Code Smell is a warning from SonarQube that says: "Your application works right now, but the code is so messy, repetitive, or confusing that future changes will be slow, painful, and prone to breaking."
 
 // bug 
-// vulnerability 
+// vulnerability  - SAST (static application security testing)
+Identifying vulnerability on source code , identifying if not falling security code practice.
+
 
  stage('Quality Gate') {
         steps {
