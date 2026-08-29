@@ -9,8 +9,9 @@ Even if a pod is "Running", if its Readiness Probe is failing, Kubernetes remove
 
 Check if the Service has active endpoints:
 
-Bash
-kubectl get endpoints <your-service-name>
+---
+$kubectl get endpoints <your-service-name>
+---
 What to look for: If the output shows <none> or has zero IP addresses under endpoints, your service is not routing traffic to any pods because the readiness probes are failing.
 
 Describe the Pod to check probe failures:
