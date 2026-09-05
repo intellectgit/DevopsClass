@@ -294,7 +294,7 @@ When a user hits your application, the request travels through this chain:
 
 ```
 
-## Scenario - 503 ERROR
+## Scenario - 503 ERROR (Service Temparorly Unavailable)
 
 In target group all the nodes are healthy 
 
