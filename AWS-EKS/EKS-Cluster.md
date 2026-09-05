@@ -44,4 +44,3 @@ eksctl create cluster -f cluster.yaml
 
 *(Note: Because the control plane is fully private, you will need to access your cluster via a VPN, a secure Bastion host/jump box, or AWS Systems Manager Session Manager from inside your VPC.)*
 
-For a visual demonstration of setting up public and private options using `eksctl`, check out this video tutorial: [How to create EKS Cluster Using eksctl](https://www.youtube.com/watch?v=56bgjtGUzGE).
