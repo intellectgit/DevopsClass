@@ -175,10 +175,10 @@ kubectl apply -f <Ingress>
 
 ```
 
-###How Alb will create the fallowing details 
+###How Alb will create the fallowing details ? 
 
 
-#Target group 
+##Target group 
 
   Health check -- health check path , health check timecout , unhealthy threashold , healthcheck timeout 
   selecting the instances (ec21, ec22)  
@@ -199,6 +199,7 @@ creating DNS
  Network mapping 
 
 ###Answer
+
 When you apply your deployments, services, and Ingress (`main-ingress`) in your private cluster setup, the **AWS Load Balancer Controller** automatically provisions and maps the infrastructure elements.
 
 Since you defined **two backend services** (`account-service` and `payment-service`) in your Ingress manifest, the controller will create **two separate Target Groups** (one for each service) and map them to a single ALB.
