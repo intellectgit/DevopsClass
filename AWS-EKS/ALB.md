@@ -185,7 +185,7 @@ kubectl apply -f <Ingress>
   Health check -- health check path , health check timecout , unhealthy threashold , healthcheck timeout 
   selecting the instances (ec21, ec22)  
 
-#ALB 
+# ALB 
 
 vpc network 
 
@@ -200,7 +200,7 @@ Listeners and routing
 creating DNS
  Network mapping 
 
-###Answer
+# Answer
 
 When you apply your deployments, services, and Ingress (`main-ingress`) in your private cluster setup, the **AWS Load Balancer Controller** automatically provisions and maps the infrastructure elements.
 
