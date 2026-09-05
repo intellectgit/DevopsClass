@@ -293,3 +293,20 @@ When a user hits your application, the request travels through this chain:
 [Your Application Pod]
 
 ```
+
+## Scenario - 503 ERROR
+
+In target group all the nodes are healthy 
+
+ In target group
+
+ node1 - EC2 Instance 1 - us-east-1a
+ node2 - EC2 Instance 2 - us-east-1b
+
+ but In ALB network mapping is mapped us-east-1c
+
+ even though the target group 2 instances (node1, node2) are health , in network mapping is no available zone is mapping.
+
+ that's why 503 error 
+
+ 
