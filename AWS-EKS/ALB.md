@@ -309,4 +309,11 @@ In target group all the nodes are healthy
 
  that's why 503 error 
 
+
+ ## Complete Flow
+
+ <img width="900" height="1600" alt="WhatsApp Image 2026-09-05 at 5 49 18 PM" src="https://github.com/user-attachments/assets/7c4a5ba2-641a-42b2-91a6-1a0ed87db791" />
+
+
+
  
