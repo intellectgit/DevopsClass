@@ -29,7 +29,7 @@ For Cluster created in a private subnet and both nodes are mapping Security grou
   vpc id - ram-vpc  
 and cluster created in the ram-private-subnet
 
-Create a file named `Account`:
+Create a Application named `Account`:
 
 ```yaml
 apiVersion: apps/v1
@@ -80,7 +80,7 @@ spec:
 
 ```
 
-Create a file named `payment`:
+Create a application named `payment`:
 
 ```yaml
 apiVersion: apps/v1
@@ -132,7 +132,7 @@ spec:
 
 ```
 
-Create a file named `Ingress`:
+Create a Ingress named `Ingress`:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -174,8 +174,9 @@ kubectl apply -f <service>
 kubectl apply -f <Ingress>
 
 ```
+---
 
-###How Alb will create the fallowing details ? 
+##How Alb will create the fallowing details ? 
 
 
 ##Target group 
