@@ -315,5 +315,82 @@ In target group all the nodes are healthy
  <img width="900" height="1600" alt="WhatsApp Image 2026-09-05 at 5 49 18 PM" src="https://github.com/user-attachments/assets/7c4a5ba2-641a-42b2-91a6-1a0ed87db791" />
 
 
+ ### 1. Network Issues & Troubleshooting
+
+#### Issue A: Target Group Health Check Failures (`Target.Timeout` or `Unhealthy`)
+
+* **Symptom:** In the AWS EC2 console, targets (`ec21`, `ec22`) show as **Unhealthy** under the target groups, and your application returns a `502 Bad Gateway` error.
+* **Cause:** The ALB cannot reach the worker nodes on the dynamically assigned NodePorts. This is usually caused by security group rules blocking traffic or the health check path returning a non-200 code.
+* **How to Troubleshoot:**
+1. Go to the EC2 Console $\rightarrow$ **Target Groups** $\rightarrow$ select your target group $\rightarrow$ check the **Targets** tab to look at the health reason code (`Timeout`, `Refused`, or `ResponseCodeMismatch`).
+2. Verify that Security Group **SG-A** attached to your nodes allows inbound traffic from the **ALB's Security Group** on the dynamic NodePort range (e.g., `30000-32768`).
+
+
+* **How to Fix:**
+* Update Security Group **SG-A** to explicitly allow TCP traffic on port range `30000-32768` originating from the ALB Security Group ID.
+* If your Nginx pod root (`/`) path doesn't match a custom health endpoint, add an explicit annotation to your Ingress to match your app:
+```yaml
+alb.ingress.kubernetes.io/healthcheck-path: "/"
+
+```
+
+
+
+
+
+#### Issue B: Private Cluster Subnet Routing Failure
+
+* **Symptom:** The ALB is provisioned, but it cannot communicate with the EKS worker nodes.
+* **Cause:** Misconfiguration between public subnets (where the internet-facing ALB sits) and private subnets (where `ram-private-subnet` and your nodes live).
+* **How to Troubleshoot:**
+* Check if the ALB subnets have proper route table entries pointing to an Internet Gateway (`IGW`), and verify that your private subnets have route tables pointing to a NAT Gateway for outbound traffic.
+
+
+* **How to Fix:** Ensure your Ingress annotation specifies public subnets for an internet-facing ALB, or use internal subnets if traffic is strictly internal.
+
+---
+
+### 2. Common Application Access Issues
+
+#### Issue C: `404 Not Found` When Accessing `/account` or `/payment`
+
+* **Symptom:** The ALB loads successfully, but requests to `http://<alb-dns>/account` return a `404 Not Found`.
+* **Cause:** Path mismatch between what the Ingress expects and what your Nginx container is listening to, or incorrect path prefix matching.
+* **How to Troubleshoot:**
+* Check the ALB Listener Rules via the AWS Console to verify that path patterns `/account*` are correctly mapped to the right Target Group.
+* Check if your Nginx container expects just `/` instead of `/account`. If Nginx receives `/account`, it might throw a 404 because the file path doesn't exist inside the container container-side.
+
+
+* **How to Fix:**
+* Use the **Rewrite Target** annotation if your backend application does not support the prefix path natively:
+```yaml
+annotations:
+  alb.ingress.kubernetes.io/rewrite-target: /$2
+
+```
+
+
+*(And update your Ingress path to use a regex capture group like `/account(/|$)(.*)`)*.
+
+
+
+#### Issue D: `503 Service Temporarily Unavailable`
+
+* **Symptom:** The browser returns a `503` error when hitting the ALB URL.
+* **Cause:** All targets in the Target Group are currently **Unhealthy**, meaning the ALB has no healthy backend instances/pods to route traffic to.
+* **How to Troubleshoot:**
+* Run `kubectl get pods -n default` to check if your `account-deployment` and `payment` pods are actually running (`Running` status and `1/1` ready).
+* Run `kubectl describe svc account-service` to ensure the NodePort service is matching the correct pod labels (`app: account`).
+
+
+* **How to Fix:**
+* If pods are crashing, fix the container image or resource limits.
+* If endpoints are missing, verify that the `selector` in your `Service` definition matches the `labels` in your `Deployment` template exactly.
+
+
+
+---
+
+
 
  
