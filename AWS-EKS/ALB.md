@@ -176,10 +176,11 @@ kubectl apply -f <Ingress>
 ```
 ---
 
-##How Alb will create the fallowing details ? 
+
+##  How Alb will create the fallowing details ? 
 
 
-##Target group 
+#  Target group 
 
   Health check -- health check path , health check timecout , unhealthy threashold , healthcheck timeout 
   selecting the instances (ec21, ec22)  
